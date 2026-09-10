@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FX Desk — Autonomous Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#10161d;--paper:#e9e4d6;--dim:#a9a495;--rule:#2a333d;--bull:#c19a56;--bear:#a8583f;--mixed:#7c8791;}
+  *{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:Inter,sans-serif;line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:50px 24px 80px}
+  h1{font-family:'Source Serif 4',serif;font-size:32px;margin:0 0 8px}
+  .asof{font-size:12.5px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+  nav{display:flex;gap:24px;border-bottom:1px solid var(--rule);margin:24px 0 36px;flex-wrap:wrap}
+  nav button{background:none;border:none;color:var(--dim);font-size:14px;font-weight:500;padding:14px 0;cursor:pointer;border-bottom:2px solid transparent}
+  nav button.active{color:var(--paper);border-color:var(--bull)}
+  .view{display:none}.view.active{display:block}
+  section{margin-bottom:44px}
+  h2{font-family:'Source Serif 4',serif;font-size:20px;margin:0 0 16px}
+  p{font-size:14.5px;color:#d6d1c1}strong{color:var(--paper)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;color:var(--dim);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--rule);padding:8px 8px 8px 0}
+  td{padding:9px 8px 9px 0;border-bottom:1px solid var(--rule);color:#d6d1c1}
+  .stance-hike{color:var(--bull)}.stance-hold{color:var(--mixed)}.stance-cut{color:var(--bear)}
+  .idea{border-left:3px solid var(--mixed);padding:18px 0 18px 16px;border-bottom:1px solid var(--rule)}
+  .idea.bull{border-left-color:var(--bull)}.idea.bear{border-left-color:var(--bear)}
+  .idea-head{display:flex;justify-content:space-between;font-family:'Source Serif 4',serif;font-size:18px;margin-bottom:6px}
+  .tag{font-size:10.5px;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:rgba(124,135,145,.18);color:var(--mixed)}
+  .pair{border-left:3px solid var(--mixed);padding:18px 0 18px 16px;border-bottom:1px solid var(--rule)}
+  .pair.bull{border-left-color:var(--bull)}.pair.bear{border-left-color:var(--bear)}
+  .pair-head{display:flex;justify-content:space-between;align-items:baseline;font-family:'Source Serif 4',serif;font-size:19px}
+  .spot{font-family:'JetBrains Mono',monospace;color:var(--dim);font-size:14px}
+  .log-row{display:flex;gap:12px;font-size:13px;color:#a8a290;padding:6px 0;border-bottom:1px solid var(--rule)}
+  code{color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+  <h1>FX Desk</h1>
+  <p class="asof" id="asof">Loading…</p>
+  <nav>
+    <button class="tab-btn active" data-tab="macro">Macro</button>
+    <button class="tab-btn" data-tab="banks">Central Banks</button>
+    <button class="tab-btn" data-tab="ideas">Trade Ideas</button>
+    <button class="tab-btn" data-tab="pairs">Majors</button>
+  </nav>
+  <div class="view active" id="view-macro">
+    <section><h2>Backdrop</h2><div id="macro-backdrop"></div></section>
+    <section><h2>Risk</h2><div id="macro-risk"></div></section>
+    <section><h2>Recent rate changes (auto-logged)</h2><div id="change-log"></div></section>
+  </div>
+  <div class="view" id="view-banks">
+    <section><h2>Policy rates &amp; auto-derived stance</h2><table id="cb-table"></table></section>
+    <section><h2>Intermarket</h2><table id="fred-table"></table></section>
+  </div>
+  <div class="view" id="view-ideas"><section><h2>Standalone currency ranking</h2><div id="ideas"></div></section></div>
+  <div class="view" id="view-pairs"><section><h2>The seven majors</h2><div id="pairs"></div></section></div>
+</div>
+<script>
+const $=s=>document.querySelector(s), esc=s=>String(s??'—');
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); document.getElementById('view-'+b.dataset.tab).classList.add('active');
+}));
+fetch('data.json?v='+Date.now()).then(r=>r.json()).then(render)
+  .catch(e=>{$('#asof').textContent='Could not load data.json — '+e.message;});
+function render(d){
+  $('#asof').textContent = `FX as of ${d.market.asof} · rebuilt ${new Date(d.generated).toUTCString()}`;
+  $('#macro-backdrop').innerHTML = d.macro.backdrop||'';
+  $('#macro-risk').innerHTML = d.macro.risk||'';
+  $('#change-log').innerHTML = (d.change_log||[]).slice().reverse().map(c=>
+    `<div class="log-row"><span>${esc(c.date)}</span><span>${esc(c.ccy)}: ${esc(c.from)}% → ${esc(c.to)}%</span></div>`
+  ).join('') || '<p>No rate changes detected yet.</p>';
+  $('#cb-table').innerHTML = `<tr><th>Bank</th><th>Rate</th><th>Stance</th><th>Last checked</th></tr>` +
+    Object.entries(d.banks).map(([ccy,b])=>
+      `<tr><td>${esc(b.bank)} (${ccy})</td><td>${esc(b.rate)}</td><td class="stance-${esc(b.stance)}">${esc(b.stance).toUpperCase()}</td><td>${esc(b.lastChecked)}</td></tr>`).join('');
+  const f=d.market.fred||{};
+  $('#fred-table').innerHTML = `<tr><th>Metric</th><th>Value</th></tr>` +
+    Object.entries(f).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${typeof v==='number'?v.toFixed(2):esc(v)}</td></tr>`).join('');
+  $('#ideas').innerHTML = (d.ideas||[]).map(i=>
+    `<div class="idea ${esc(i.direction)}"><div class="idea-head"><span>${esc(i.ccy)}</span><span class="tag">${esc(i.convictionText)}</span></div>${i.body||''}</div>`).join('');
+  $('#pairs').innerHTML = (d.pairs||[]).map(p=>{
+    const spot=d.market.pairs[p.name];
+    const s = spot!=null ? (p.name.includes('JPY')?spot.toFixed(2):spot.toFixed(4)) : '—';
+    return `<div class="pair ${esc(p.direction)}"><div class="pair-head"><span>${esc(p.name)}</span><span class="spot">~${s}</span></div>
+      <p><b>${esc(p.bias)}</b></p>${p.fundamental||''}${p.technical||''}<p><b>Watch:</b> ${esc(p.watch)}</p></div>`;
+  }).join('');
+}
+</script>
+</body></html>
