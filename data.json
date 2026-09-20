@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-19T10:32:19Z",
+  "generated": "2026-09-20T10:54:59Z",
   "market": {
     "asof": "2026-09-18",
-    "fetched": "2026-09-19T10:32:19Z",
+    "fetched": "2026-09-20T10:54:59Z",
     "pairs": {
       "EUR/USD": 1.146,
       "GBP/USD": 1.33442,
@@ -34,50 +34,50 @@
     "USD": {
       "bank": "Federal Reserve",
       "rate": "3.88%",
-      "stance": "hike",
-      "lastChecked": "2026-09-19"
+      "stance": "hold",
+      "lastChecked": "2026-09-20"
     },
     "EUR": {
       "bank": "European Central Bank",
       "rate": "2.50%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "GBP": {
       "bank": "Bank of England",
       "rate": "3.73%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "JPY": {
       "bank": "Bank of Japan",
       "rate": "0.98%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "AUD": {
       "bank": "Reserve Bank of Australia",
       "rate": "4.35%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "CAD": {
       "bank": "Bank of Canada",
       "rate": "2.25%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "CHF": {
       "bank": "Swiss National Bank",
       "rate": "1.34%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     },
     "NZD": {
       "bank": "Reserve Bank of New Zealand",
       "rate": "4.33%",
       "stance": "hold",
-      "lastChecked": "2026-09-19"
+      "lastChecked": "2026-09-20"
     }
   },
   "change_log": [
@@ -109,15 +109,15 @@
   },
   "ideas": [
     {
-      "ccy": "USD",
+      "ccy": "AUD",
       "rank": 1
     },
     {
-      "ccy": "AUD",
+      "ccy": "NZD",
       "rank": 2
     },
     {
-      "ccy": "NZD",
+      "ccy": "USD",
       "rank": 3
     },
     {
