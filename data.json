@@ -1,16 +1,16 @@
 {
-  "generated": "2026-11-12T14:50:36Z",
+  "generated": "2026-11-13T14:11:59Z",
   "market": {
-    "asof": "2026-11-11",
-    "fetched": "2026-11-12T14:50:36Z",
+    "asof": "2026-11-12",
+    "fetched": "2026-11-13T14:11:59Z",
     "pairs": {
-      "EUR/USD": 1.11271,
-      "GBP/USD": 1.33069,
-      "AUD/USD": 0.68592,
-      "NZD/USD": 0.55835,
-      "USD/JPY": 159.23,
-      "USD/CAD": 1.4235,
-      "USD/CHF": 0.82987
+      "EUR/USD": 1.10809,
+      "GBP/USD": 1.32556,
+      "AUD/USD": 0.68208,
+      "NZD/USD": 0.55565,
+      "USD/JPY": 159.7,
+      "USD/CAD": 1.4249,
+      "USD/CHF": 0.83314
     },
     "rates": {
       "USD": 3.88,
@@ -23,10 +23,10 @@
       "NZD": 4.33
     },
     "fred": {
-      "US10Y": 4.88,
-      "US2Y": 4.56,
-      "brent": 107.03,
-      "wti": 99.64,
+      "US10Y": 4.98,
+      "US2Y": 4.73,
+      "brent": 92.14,
+      "wti": 89.62,
       "vix": 17.49
     }
   },
@@ -35,49 +35,49 @@
       "bank": "Federal Reserve",
       "rate": "3.88%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "EUR": {
       "bank": "European Central Bank",
       "rate": "2.50%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "GBP": {
       "bank": "Bank of England",
       "rate": "3.73%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "JPY": {
       "bank": "Bank of Japan",
       "rate": "1.04%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "AUD": {
       "bank": "Reserve Bank of Australia",
       "rate": "4.35%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "CAD": {
       "bank": "Bank of Canada",
       "rate": "2.24%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "CHF": {
       "bank": "Swiss National Bank",
       "rate": "1.34%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     },
     "NZD": {
       "bank": "Reserve Bank of New Zealand",
       "rate": "4.33%",
       "stance": "hold",
-      "lastChecked": "2026-11-12"
+      "lastChecked": "2026-11-13"
     }
   },
   "change_log": [
