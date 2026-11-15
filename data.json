@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-14T13:11:23Z",
+  "generated": "2026-11-15T13:39:52Z",
   "market": {
     "asof": "2026-11-13",
-    "fetched": "2026-11-14T13:11:23Z",
+    "fetched": "2026-11-15T13:39:52Z",
     "pairs": {
       "EUR/USD": 1.1052,
       "GBP/USD": 1.32266,
@@ -35,49 +35,49 @@
       "bank": "Federal Reserve",
       "rate": "3.88%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "EUR": {
       "bank": "European Central Bank",
       "rate": "2.50%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "GBP": {
       "bank": "Bank of England",
       "rate": "3.73%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "JPY": {
       "bank": "Bank of Japan",
       "rate": "1.04%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "AUD": {
       "bank": "Reserve Bank of Australia",
       "rate": "4.35%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "CAD": {
       "bank": "Bank of Canada",
       "rate": "2.24%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "CHF": {
       "bank": "Swiss National Bank",
       "rate": "1.34%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     },
     "NZD": {
       "bank": "Reserve Bank of New Zealand",
       "rate": "4.33%",
       "stance": "hold",
-      "lastChecked": "2026-11-14"
+      "lastChecked": "2026-11-15"
     }
   },
   "change_log": [
